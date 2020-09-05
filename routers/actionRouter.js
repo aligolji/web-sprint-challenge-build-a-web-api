@@ -3,7 +3,6 @@ const Actions = require('../data/helpers/actionModel');
 
 const router = express.Router();
 
-//WORKING
 router.get('/', (req, res) => {
     Actions.get()
         .then(actions => {
@@ -14,7 +13,6 @@ router.get('/', (req, res) => {
         })
 });
 
-//WORKING - needs id validation
 router.get('/:id', (req, res) => {
     Actions.get(req.params.id)
         .then(action => {
@@ -29,22 +27,23 @@ router.get('/:id', (req, res) => {
         });
 });
 
-
-//WORKING - needs validation of required keys
 router.post('/', (req, res) => {
     const { project_id, description, notes } = req.body;
     const action = { project_id, description, notes }
 
     Actions.insert(action)
         .then(action => {
-            res.status(201).json(action);
+            if (project_id && description && notes) {
+                res.status(201).json(action);
+            } else if (!project_id || !description || !notes) {
+                res.status(400).json({ message: 'Please provide project ID, description, and notes for the action.' });
+            };
         })
         .catch(err => {
             res.status(500).json({ error: 'There was an error while adding action.' });
         });
 });
 
-//WORKING - needs validation of id
 router.put('/:id', (req, res) => {
     Actions.update(req.params.id, req.body)
         .then(action => {
@@ -59,7 +58,6 @@ router.put('/:id', (req, res) => {
         });
 });
 
-//WORKING - needs validation of id
 router.delete('/:id', (req, res) => {
     Actions.remove(req.params.id)
         .then(count => {
