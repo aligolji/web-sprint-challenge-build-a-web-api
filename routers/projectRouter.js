@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         });
 });
 
-//WORKING
+//WORKING - needs id validation
 router.get('/:id', (req, res) => {
     Projects.get(req.params.id)
         .then(project => {
@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-//WORKING
+//WORKING - needs id validation
 router.get('/:id/actions', (req, res) => {
     Projects.getProjectActions(req.params.id)
         .then(actions => {
@@ -47,9 +47,12 @@ router.get('/:id/actions', (req, res) => {
         })
 });
 
-//WORKING
+//WORKING - needs validation of required keys
 router.post('/', (req, res) => {
-    Projects.insert(req.body)
+    const { name, description } = req.body;
+    const project = { name, description };
+
+    Projects.insert(project)
         .then(project => {
             // if (name && description) {
             res.status(201).json(project);
@@ -62,15 +65,14 @@ router.post('/', (req, res) => {
         });
 });
 
-//WORKING
+//WORKING - needs id validation
 router.put('/:id', (req, res) => {
     Projects.update(req.params.id, req.body)
         .then(project => {
-            console.log(project)
             if (project) {
                 res.status(200).json(project);
             } else {
-                res.status(404).json({ message: 'The project could not be found' });
+                res.status(404).json(null);
             };
         })
         .catch(err => {
@@ -84,14 +86,14 @@ router.delete('/:id', (req, res) => {
     Projects.remove(req.params.id)
         .then(count => {
             if (count > 0) {
-                res.status(200).json({ message: 'The project now ceases to exist.' })
+                res.status(200).json({ count, message: 'The project now ceases to exist.' })
             } else {
-                res.status(404).json({ message: 'The project could not be found.' });
-            }
+                res.status(404).json({ message: 'Project specified not be found.' });
+            };
         })
         .catch(err => {
-            res.status(500).json({ error: 'Error deleting the project.' });
-        })
+            res.status(500).json({ error: 'Error deleting specified project.' });
+        });
 });
 
 
