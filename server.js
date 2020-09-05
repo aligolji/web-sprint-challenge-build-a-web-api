@@ -18,7 +18,7 @@ server.use('/api/actions', actionRouter);
 
 server.get('/', (req, res) => {
     res.send(`
-    <h2>Welcome to API Sprint Challenge</h2>`);
+    <h2>This is a deployed web API</h2>`);
 });
 
 // function logger() {
