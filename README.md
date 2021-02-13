@@ -56,17 +56,29 @@ We have provided test data for all the resources.
 
 Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons) and your team lead as the evaluate your solution.
 
-## Interview Questions
+## Interview Questions ////////////////////////////////////////////////////
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+        >>> The core freatures of Node.js include the ability to use the same language for both the client and the server which makes it easier to share code between the client and the server. Node.js is asynchronous and can take full advantage of the processor it is on as it will be running on a single server. Another core feature is the accessibility it provides to the largest ecosystem of libraries, this makes for a more expansive functionality.
+        Express is useful in that it adds extra functionality such as routing and middleware support. Some other core features of express include it being extendable and compatibility with connect middleware server framework which brings further extended functionality. Another important feature is that it is packaged into an easy to use API.
+
 1. Understand and explain the use of Middleware?
+        >>> Middleware extends the usability and of functions. Can be implemented as small functions to handle small aspects of an application, such as authentication, and it also gives us the power to separate the functionality of a program.
+
 1. The basic principles of the REST architectural style.
+        >>> The basic principles include everything being viewed as a resource, that each resource is accessible through a unique URL, resources can have multiple representations, resource management happens through HTTP methods, and communication happens over a stateles protocol.
+
 1. Understand and explain the use of Express Routers.
+        >>> Applications can have few, several, or many resources, each of which may require several endpionts. Express Routers give the power to separate resource endpoints and code from one-another, break the bulk of the application code into smaller chunks that are cleaner and easier to manage.
+
 1. Describe tooling used to manually test the correctness of an API.
+        >>> The tools used to manually test API correctness emulate provide a means to test requests and responses of endpoints. There are different tools available such as Postman, Postwoman, and Insomnia. The tools provide different reuqests, methods to input request bodies, required parameters, set the type of data being passed, and many other customizable functions to provie as accurate an emulation as possible to a fully deployed application.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
+
+//////////////////////////////////////////////////////////////////////////////////
 
 ## Instructions
 
